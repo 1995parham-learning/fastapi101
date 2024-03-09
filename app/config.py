@@ -17,11 +17,17 @@ class HTTP(pydantic.BaseModel):
 
 class Settings(pydantic_settings.BaseSettings):
     """
-    Configuration holder
+    Configuration holder which reads configuration from config.toml
+    and environment variables.
     """
 
     http: HTTP = HTTP(debug=True)
-    model_config = pydantic_settings.SettingsConfigDict(toml_file="config.toml")
+    model_config = pydantic_settings.SettingsConfigDict(
+        toml_file="config.toml",
+        env_prefix="fastapi101_",
+        case_sensitive=False,
+        env_nested_delimiter="__",
+    )
 
     @classmethod
     def settings_customise_sources(
