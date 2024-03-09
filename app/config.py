@@ -1,12 +1,25 @@
+"""
+Application configuration from file and environment variables.
+"""
+
 import pydantic
 import pydantic_settings
 
 
 class HTTP(pydantic.BaseModel):
+    """
+    HTTP module configuration besides configuration that are passed
+    directly to uvicorn.
+    """
+
     debug: bool
 
 
 class Settings(pydantic_settings.BaseSettings):
+    """
+    Configuration holder
+    """
+
     http: HTTP = HTTP(debug=True)
     model_config = pydantic_settings.SettingsConfigDict(toml_file="config.toml")
 
