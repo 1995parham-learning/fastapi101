@@ -11,6 +11,7 @@ pydantic-settings = "*"
 
 [dev-packages]
 pylint = "*"
+mypy = "*"
 
 [requires]
 python_version = "3.11"
