@@ -45,6 +45,7 @@ async def users_list(
     return storage.all()
 
 
+@router.post("/", tags=["users"])
 async def users_new(
     storage: typing.Annotated[services.Storage, fastapi.Depends()],
     user: User,

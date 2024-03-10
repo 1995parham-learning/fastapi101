@@ -15,6 +15,7 @@ rich = "*"
 pylint = "*"
 mypy = "*"
 pytest = "*"
+httpx = "*"
 
 [requires]
 python_version = "3.12"
