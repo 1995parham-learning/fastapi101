@@ -8,6 +8,7 @@ fastapi = "*"
 uvicorn = {extras = ["all"], version = "*"}
 pydantic = "*"
 pydantic-settings = "*"
+typer = "*"
 
 [dev-packages]
 pylint = "*"
