@@ -16,6 +16,7 @@ pylint = "*"
 mypy = "*"
 pytest = "*"
 httpx = "*"
+coverage = "*"
 
 [requires]
 python_version = "3.12"
