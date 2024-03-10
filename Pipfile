@@ -9,6 +9,7 @@ uvicorn = {extras = ["all"], version = "*"}
 pydantic = "*"
 pydantic-settings = "*"
 typer = "*"
+rich = "*"
 
 [dev-packages]
 pylint = "*"
