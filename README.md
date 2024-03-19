@@ -41,7 +41,7 @@ class Student:
   # last name given by the user
   last_name: str
   # the date in which the creation api is called
-  registration_date: datetmie.date
+  registration_date: datetime.date
   # graduation date given by user
   graduation_date: datetime.date | None
   # average score given by user
