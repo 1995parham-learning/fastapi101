@@ -11,6 +11,62 @@
 [FastAPI](https://fastapi.tiangolo.com/) is a python framework to have HTTP server with lots of typing,
 during the project I will try to set up database and also commands for doing common commands.
 
+## Description
+
+First design the API for following operations:
+
+```
+GET /students
+List the created students
+
+POST /students
+Create an student
+
+DELETE /students/:id
+Delete students with the given identification
+
+GET /students/:id
+Retrieve the student with the given identification
+```
+
+Feel free to use any unique string as an identification for students. The following model
+should be your model for student but you can use different models for your request and response.
+
+```python
+class Student:
+  # unique identification manually generated
+  id: str
+  # first name given by the user
+  first_name: str
+  # last name given by the user
+  last_name: str
+  # the date in which the creation api is called
+  registration_date: datetmie.date
+  # graduation date given by user
+  graduation_date: datetime.date | None
+  # average score given by user
+  average: float
+```
+
+Implement the design using FastAPI (make sure you are using `async` handlers), setup the project using `pipfile` or `poerty`,
+and make sure you have a README for how to run the project.
+For this part, there is no need to use database and you can store data into memory.
+
+To understand asynchronous programming better, add sleep into your handlers as follows:
+
+```python
+import asyncio
+
+await asyncio.sleep(10)
+
+import time
+
+time.sleep(10)
+```
+
+Call your APIs in both cases multiple times and write down the response times.
+Can you summerize what did happen? and what is the difference?
+
 ## How to run?
 
 You can run server using `uvicorn` directly,
