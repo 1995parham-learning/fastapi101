@@ -1,10 +1,10 @@
 <h1 align="center">FastAPI 101</h1>
 
 <p align="center">
-<img alt="GitHub Workflow Status" src="https://img.shields.io/github/actions/workflow/status/1995parham-learning/fastapi101/ci.yml?logo=github&style=for-the-badge">
-<img alt="Codecov" src="https://img.shields.io/codecov/c/github/1995parham-learning/fastapi101?logo=codecov&style=for-the-badge">
-<img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/1995parham-learning/fastapi101?logo=github&style=for-the-badge">
- </p>
+    <img alt="GitHub Workflow Status" src="https://img.shields.io/github/actions/workflow/status/1995parham-learning/fastapi101/ci.yml?logo=github&style=for-the-badge">
+    <img alt="Codecov" src="https://img.shields.io/codecov/c/github/1995parham-learning/fastapi101?logo=codecov&style=for-the-badge">
+    <img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/1995parham-learning/fastapi101?logo=github&style=for-the-badge">
+</p>
 
 ## Introduction
 
