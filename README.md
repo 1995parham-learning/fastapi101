@@ -48,7 +48,7 @@ class Student:
   average: float
 ```
 
-Implement the design using [FastAPI](https://fastapi.tiangolo.com/) (make sure you are using `async` handlers), setup the project using [`pipfile`](https://pipenv.pypa.io/en/latest/) or [`poerty`](https://python-poetry.org/),
+Implement the design using [FastAPI](https://fastapi.tiangolo.com/) (make sure you are using `async` handlers), setup the project using [`pipenv`](https://pipenv.pypa.io/en/latest/) or [`poerty`](https://python-poetry.org/),
 and make sure you have a README for how to run the project.
 
 > [!NOTE]
