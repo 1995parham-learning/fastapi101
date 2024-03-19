@@ -54,6 +54,10 @@ and make sure you have a README for how to run the project.
 > [!NOTE]
 > For this part, there is no need to use database and you can store data into memory.
 
+> [!NOTE]
+> Use [pydantic](https://docs.pydantic.dev/latest/) for request, response and models.
+> They have very good integration with FastAPI and its friends.
+
 To understand asynchronous programming better, add sleep into your handlers as follows:
 
 ```python
