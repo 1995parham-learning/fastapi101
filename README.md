@@ -84,6 +84,9 @@ Write tests for your API based on the [FastAPI documentation](https://fastapi.ti
 > [!NOTE]
 > GitHub Actions is your friend, use them to test and lint your project.
 
+> [!DANGER]
+> The `uvicorn` can have multiple workers, test and see your in-memory storage works with them or not?
+
 ## How to run?
 
 You can run server using `uvicorn` directly,
