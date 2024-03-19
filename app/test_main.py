@@ -12,6 +12,27 @@ from .main import app
 class TestMain(TestCase):
     client = TestClient(app)
 
+    def test_user_create_and_delete(self):
+        """
+        Create a user and then delete it.
+        """
+        future_user = {
+            "first_name": "Parham",
+            "last_name": "Alvani",
+            "average": 18.0,
+        }
+
+        response = self.client.post(
+            "/users",
+            json=future_user,
+        )
+        assert response.status_code == 200
+        user = response.json()
+        assert future_user.items() <= user.items()
+
+        response = self.client.delete(f"/users/{user['id']}")
+        assert response.status_code == 200
+
     def test_users_create_and_list(self):
         """
         Create valid users and make sure it returns in the users list.
