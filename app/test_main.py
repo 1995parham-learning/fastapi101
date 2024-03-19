@@ -30,6 +30,9 @@ class TestMain(TestCase):
         user = response.json()
         assert future_user.items() <= user.items()
 
+        response = self.client.get(f"/users/{user['id']}")
+        assert response.status_code == 200
+
         response = self.client.delete(f"/users/{user['id']}")
         assert response.status_code == 200
 
