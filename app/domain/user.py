@@ -1,3 +1,7 @@
+"""
+the user model definition.
+"""
+
 import datetime
 
 import pydantic
@@ -12,3 +16,5 @@ class User(pydantic.BaseModel):
     first_name: str
     last_name: str
     registration_date: datetime.date
+    graduation_date: datetime.date | None
+    average: float

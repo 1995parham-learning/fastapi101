@@ -2,7 +2,9 @@
 Users related APIs are implemented here as function.
 """
 
+import datetime
 import typing
+import uuid
 
 import fastapi
 import pydantic
@@ -19,13 +21,15 @@ class User(pydantic.BaseModel):
 
     first_name: str = pydantic.Field()
     last_name: str = pydantic.Field()
-    age: int = pydantic.Field(
-        gt=0,
-    )
+    average: float = pydantic.Field(ge=0)
+    graduation_date: datetime.date | None = pydantic.Field(default=None)
 
     @pydantic.field_validator("first_name", "last_name")
     @classmethod
     def check_alphanumeric(cls, v: str, info: pydantic.ValidationInfo) -> str:
+        """
+        check first name and last to be alphanumeric.
+        """
         assert isinstance(v, str), f"{info.field_name} must be string"
 
         is_alphanumeric = v.replace(" ", "").isalpha()
@@ -54,9 +58,12 @@ async def users_new(
     Create another user from the request.
     """
     user_ = domain.User(
+        id=uuid.uuid4().hex,
         first_name=user.first_name,
         last_name=user.last_name,
-        age=user.age,
+        registration_date=datetime.date.today(),
+        average=user.average,
+        graduation_date=user.graduation_date,
     )
     storage.append(user_)
 
