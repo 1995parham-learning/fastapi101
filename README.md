@@ -98,5 +98,5 @@ uvicorn app.main:app --reload
 or you can run it using the CLI
 
 ```bash
-python main.py serve
+python main.py
 ```
