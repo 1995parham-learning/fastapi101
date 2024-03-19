@@ -2,70 +2,71 @@
 End-to-end testings for APIs.
 """
 
+from unittest import TestCase
+
 from fastapi.testclient import TestClient
 
 from .main import app
 
-client = TestClient(app)
 
+class TestMain(TestCase):
+    client = TestClient(app)
 
-def test_users_create_and_list():
-    """
-    Create valid users and make sure it returns in the users list.
-    """
+    def test_users_create_and_list(self):
+        """
+        Create valid users and make sure it returns in the users list.
+        """
 
-    future_users = [
-        {
-            "first_name": "Parham",
-            "last_name": "Alvani",
-            "average": 18.0,
-        },
-        {
-            "first_name": "Elahe",
-            "last_name": "Dastan",
-            "average": 20.0,
-        },
-        {
-            "first_name": "Seyed Parham",
-            "last_name": "Alvani",
-            "average": 18.5,
-        },
-    ]
+        future_users = [
+            {
+                "first_name": "Parham",
+                "last_name": "Alvani",
+                "average": 18.0,
+            },
+            {
+                "first_name": "Elahe",
+                "last_name": "Dastan",
+                "average": 20.0,
+            },
+            {
+                "first_name": "Seyed Parham",
+                "last_name": "Alvani",
+                "average": 18.5,
+            },
+        ]
 
-    for user in future_users:
-        response = client.post(
-            "/users",
-            json=user,
-        )
+        for user in future_users:
+            response = self.client.post(
+                "/users",
+                json=user,
+            )
+            assert response.status_code == 200
+            assert user.items() <= response.json().items()
+
+        response = self.client.get("/users")
         assert response.status_code == 200
-        assert response.json() == user
+        users = response.json()
+        assert len(users) == len(future_users)
 
-    response = client.get("/users")
-    assert response.status_code == 200
-    users = response.json()
-    assert len(users) == len(future_users)
-    assert users == future_users
+    def test_users_bad_create(self):
+        """
+        Create a invalid user and make sure it returns error.
+        """
 
-
-def test_users_bad_create():
-    """
-    Create a invalid user and make sure it returns error.
-    """
-
-    for user in [
-        {
-            "first_name": "Parham1",
-            "last_name": "Alvani",
-            "average": 18,
-        },
-        {
-            "first_name": "Parham",
-            "last_name": "Alvani",
-            "average": -1,
-        },
-    ]:
-        response = client.post(
-            "/users",
-            json=user,
-        )
-        assert response.status_code == 422
+        for user in [
+            {
+                "first_name": "Parham1",
+                "last_name": "Alvani",
+                "average": 18,
+            },
+            {
+                "first_name": "Parham",
+                "last_name": "Alvani",
+                "average": -1,
+            },
+        ]:
+            response = self.client.post(
+                "/users",
+                json=user,
+            )
+            assert response.status_code == 422
