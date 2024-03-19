@@ -18,12 +18,12 @@ def test_users_create_and_list():
         {
             "first_name": "Parham",
             "last_name": "Alvani",
-            "average": 18,
+            "average": 18.0,
         },
         {
             "first_name": "Elahe",
             "last_name": "Dastan",
-            "average": 20,
+            "average": 20.0,
         },
         {
             "first_name": "Seyed Parham",
