@@ -88,6 +88,9 @@ Write tests for your API based on the [FastAPI documentation](https://fastapi.ti
 > The `uvicorn` can have multiple workers, test and see your in-memory storage works with them or not?
 > Is there any solution in your mind?
 
+Now you know the issue, so provide the database and use the in-memory store only in tests.
+For using database, you can use [`sqlmodel`](https://github.com/tiangolo/sqlmodel) which is the FastAPI friend.
+
 ## How to run?
 
 You can run server using `uvicorn` directly,
