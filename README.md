@@ -79,6 +79,11 @@ Can you summarize what happened? And what is the difference?
 Make sure your design is clean and have multiple modules (you can use current repository to have an idea about the structure).
 Use [Dependency Injection](https://fastapi.tiangolo.com/tutorial/dependencies/) to separate logic from your views.
 
+Write tests for your API based on the [FastAPI documentation](https://fastapi.tiangolo.com/tutorial/testing/).
+
+> [!NOTE]
+> GitHub Actions is your friend, use them to test and lint your project.
+
 ## How to run?
 
 You can run server using `uvicorn` directly,
@@ -87,7 +92,7 @@ You can run server using `uvicorn` directly,
 uvicorn app.main:app --reload
 ```
 
-or you can run it using the cli
+or you can run it using the CLI
 
 ```bash
 python main.py serve
