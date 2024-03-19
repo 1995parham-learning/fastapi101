@@ -18,17 +18,17 @@ def test_users_create_and_list():
         {
             "first_name": "Parham",
             "last_name": "Alvani",
-            "age": 30,
+            "average": 18,
         },
         {
             "first_name": "Elahe",
             "last_name": "Dastan",
-            "age": 20,
+            "average": 20,
         },
         {
             "first_name": "Seyed Parham",
             "last_name": "Alvani",
-            "age": 30,
+            "average": 18.5,
         },
     ]
 
@@ -56,12 +56,12 @@ def test_users_bad_create():
         {
             "first_name": "Parham1",
             "last_name": "Alvani",
-            "age": 30,
+            "average": 18,
         },
         {
             "first_name": "Parham",
             "last_name": "Alvani",
-            "age": -30,
+            "average": -1,
         },
     ]:
         response = client.post(
