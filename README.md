@@ -100,3 +100,17 @@ or you can run it using the CLI
 ```bash
 python main.py
 ```
+
+## How to `curl`
+
+You can create a user with
+
+```bash
+curl 127.0.0.1:1378/users/ -H 'Content-Type: application/json' -d '{ "first_name": "Parham", "last_name": "Alvani", "average": 19.0  }'
+```
+
+and then list the created users with
+
+```bash
+curl 127.0.0.1:1378/users/
+```
