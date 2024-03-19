@@ -7,6 +7,7 @@ import typing
 import uuid
 
 import fastapi
+import fastapi.exceptions
 import pydantic
 
 from app import domain, services
@@ -47,6 +48,36 @@ async def users_list(
     List currently stored users.
     """
     return storage.all()
+
+
+@router.get("/{user_id}", tags=["users"])
+async def users_get(
+    storage: typing.Annotated[services.Storage, fastapi.Depends()], user_id: str
+):
+    """
+    Retrieve a user specified by its ID.
+    """
+    user = storage.retrieve(user_id)
+
+    if user is not None:
+        return user
+
+    raise fastapi.exceptions.HTTPException(status_code=404, detail="user not found")
+
+
+@router.delete("/{user_id}", tags=["users"])
+async def users_delete(
+    storage: typing.Annotated[services.Storage, fastapi.Depends()], user_id: str
+):
+    """
+    Retrieve a user specified by its ID.
+    """
+    user = storage.delete(user_id)
+
+    if user is not None:
+        return user
+
+    raise fastapi.exceptions.HTTPException(status_code=404, detail="user not found")
 
 
 @router.post("/", tags=["users"])

@@ -36,6 +36,22 @@ class Storage:
         if user.id not in self.storage:
             self.storage[user.id] = user
 
+    def retrieve(self, user_id: str) -> domain.User | None:
+        """
+        Retrieve the user by ID.
+        """
+        return self.storage.get(user_id, None)
+
+    def delete(self, user_id: str) -> domain.User | None:
+        """
+        Delete the user by ID.
+        """
+        user = self.storage.get(user_id, None)
+        if user is None:
+            return None
+        del self.storage[user_id]
+        return user
+
     def all(self) -> list[domain.User]:
         """
         Return all the registered users.
