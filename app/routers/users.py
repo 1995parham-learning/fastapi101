@@ -40,6 +40,12 @@ class User(pydantic.BaseModel):
         return v
 
 
+# FastAPI calls the services.Storage class.
+# This creates an "instance" of that class and the instance will be passed
+# as the parameter commons to your function.
+# Because of this, services.Storage has its storage as a class variable.
+
+
 @router.get("/", tags=["users"])
 async def users_list(
     storage: typing.Annotated[services.Storage, fastapi.Depends()]
