@@ -68,7 +68,7 @@ time.sleep(10)
 ```
 
 Call your APIs in both cases multiple times and write down the response times.
-Can you summerize what did happen? and what is the difference?
+Can you summerize what happened? and what is the difference?
 
 Make sure your design is clean and have multiple modules (you can use current repository to have an idea about the structure).
 Use [Dependency Injection](https://fastapi.tiangolo.com/tutorial/dependencies/) to sperate logic from your views.
