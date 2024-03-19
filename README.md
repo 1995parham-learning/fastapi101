@@ -30,7 +30,7 @@ Retrieve the student with the given identification
 ```
 
 Feel free to use any unique string as an identification for students. The following model
-should be your model for student but you can use different models for your request and response.
+should be your model for student, but you can use different models for your request and response.
 
 ```python
 class Student:
@@ -48,14 +48,15 @@ class Student:
   average: float
 ```
 
-Implement the design using [FastAPI](https://fastapi.tiangolo.com/) (make sure you are using `async` handlers), setup the project using [`pipenv`](https://pipenv.pypa.io/en/latest/) or [`poerty`](https://python-poetry.org/),
+Implement the design using [FastAPI](https://fastapi.tiangolo.com/) (make sure you are using `async` handlers),
+set up the project using [`pipenv`](https://pipenv.pypa.io/en/latest/) or [`poerty`](https://python-poetry.org/),
 and make sure you have a README for how to run the project.
 
 > [!NOTE]
-> For this part, there is no need to use database and you can store data into memory.
+> There is no need to use database for now, and you can store data into memory.
 
 > [!NOTE]
-> Use [pydantic](https://docs.pydantic.dev/latest/) for request, response and models.
+> Use [`pydantic`](https://docs.pydantic.dev/latest/) for request, response and models.
 > They have very good integration with FastAPI and its friends.
 
 To understand asynchronous programming better, add sleep into your handlers as follows:
@@ -65,6 +66,7 @@ import asyncio
 
 await asyncio.sleep(10)
 ```
+
 ```python
 import time
 
@@ -72,10 +74,10 @@ time.sleep(10)
 ```
 
 Call your APIs in both cases multiple times and write down the response times.
-Can you summerize what happened? and what is the difference?
+Can you summarize what happened? And what is the difference?
 
 Make sure your design is clean and have multiple modules (you can use current repository to have an idea about the structure).
-Use [Dependency Injection](https://fastapi.tiangolo.com/tutorial/dependencies/) to sperate logic from your views.
+Use [Dependency Injection](https://fastapi.tiangolo.com/tutorial/dependencies/) to separate logic from your views.
 
 ## How to run?
 
