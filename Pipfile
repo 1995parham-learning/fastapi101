@@ -10,6 +10,7 @@ pydantic = "*"
 pydantic-settings = "*"
 typer = "*"
 rich = "*"
+sqlmodel = "*"
 
 [dev-packages]
 pylint = "*"

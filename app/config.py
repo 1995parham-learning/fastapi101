@@ -4,6 +4,7 @@ Application configuration from file and environment variables.
 
 import pydantic
 import pydantic_settings
+import rich
 
 
 class HTTP(pydantic.BaseModel):
@@ -15,6 +16,15 @@ class HTTP(pydantic.BaseModel):
     debug: bool
 
 
+class DB(pydantic.BaseModel):
+    """
+    Database module configuration
+    """
+
+    database: str
+    echo: bool
+
+
 class Settings(pydantic_settings.BaseSettings):
     """
     Configuration holder which reads configuration from config.toml
@@ -22,6 +32,7 @@ class Settings(pydantic_settings.BaseSettings):
     """
 
     http: HTTP = HTTP(debug=True)
+    database: DB = DB(database="database.db", echo=True)
     model_config = pydantic_settings.SettingsConfigDict(
         toml_file="config.toml",
         env_prefix="fastapi101_",
@@ -44,3 +55,7 @@ class Settings(pydantic_settings.BaseSettings):
         del file_secret_settings
 
         return (pydantic_settings.TomlConfigSettingsSource(settings_cls),)
+
+
+settings = Settings()
+rich.print(f"configuration: {settings.model_dump()}")
