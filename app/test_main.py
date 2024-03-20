@@ -40,6 +40,20 @@ class TestMain(TestCase):
 
     client = TestClient(app)
 
+    def test_user_delete_not_found(self):
+        """
+        Delete a user which doesn't exists.
+        """
+        response = self.client.delete(f"/users/not-found")
+        assert response.status_code == 404
+
+    def test_user_retrieve_not_found(self):
+        """
+        Retrieve a user which doesn't exists.
+        """
+        response = self.client.get(f"/users/not-found")
+        assert response.status_code == 404
+
     def test_user_create_and_delete(self):
         """
         Create a user and then delete it.
