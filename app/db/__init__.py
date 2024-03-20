@@ -1,1 +1,1 @@
-from .db import migrate
+from .db import get_db, migrate

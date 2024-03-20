@@ -13,9 +13,21 @@ sqlite_url = f"sqlite:///{config.settings.database.database}"
 engine = sqlmodel.create_engine(sqlite_url, echo=config.settings.database.echo)
 
 
+def get_db():
+    """
+    Create a database local database session to be used in
+    FastAPI.
+    """
+    db = sqlmodel.Session(engine)
+    try:
+        yield db
+    finally:
+        db.close()
+
+
 def migrate():
     """
-    python modules are signleton and here we do the migration.
+    Do the migration
     """
 
     # importing domain models just for doing migration

@@ -2,7 +2,10 @@
 Storages for users.
 """
 
-from app import domain
+import fastapi
+import sqlmodel
+
+from app import db, domain
 
 
 class DuplicateEntry(Exception):
@@ -21,39 +24,46 @@ class DuplicateEntry(Exception):
 
 class Storage:
     """
-    In memory storage for users.
+    Database storage for users.
     """
 
-    storage: dict[str, domain.User] = {}
-
-    def __init__(self):
-        pass
+    def __init__(self, session: sqlmodel.Session = fastapi.Depends(db.get_db)):
+        self.session = session
 
     def append(self, user: domain.User):
         """
         Register new user.
         """
-        if user.id not in self.storage:
-            self.storage[user.id] = user
+        self.session.add(user)
+        self.session.commit()
+        self.session.refresh(user)
 
     def retrieve(self, user_id: str) -> domain.User | None:
         """
         Retrieve the user by ID.
         """
-        return self.storage.get(user_id, None)
+        stmt = sqlmodel.select(domain.User).where(domain.User.id == user_id)
+
+        return self.session.exec(stmt).first()
 
     def delete(self, user_id: str) -> domain.User | None:
         """
         Delete the user by ID.
         """
-        user = self.storage.get(user_id, None)
+        stmt = sqlmodel.select(domain.User).where(domain.User.id == user_id)
+
+        user = self.session.exec(stmt).first()
+
         if user is None:
             return None
-        del self.storage[user_id]
+
+        self.session.delete(user)
         return user
 
     def all(self) -> list[domain.User]:
         """
         Return all the registered users.
         """
-        return list(self.storage.values())
+        stmt = sqlmodel.select(domain.User)
+
+        return list(self.session.exec(stmt))
