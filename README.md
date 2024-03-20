@@ -90,6 +90,7 @@ Write tests for your API based on the [FastAPI documentation](https://fastapi.ti
 
 Now you know the issue, so provide the database and use the in-memory store only in tests.
 For using database, you can use [`sqlmodel`](https://github.com/tiangolo/sqlmodel) which is the FastAPI friend.
+After switching to the database, you can update tests based on [manual](https://fastapi.tiangolo.com/advanced/testing-database/).
 
 ## How to run?
 
