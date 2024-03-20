@@ -92,6 +92,11 @@ Now you know the issue, so provide the database and use the in-memory store only
 For using database, you can use [`sqlmodel`](https://github.com/tiangolo/sqlmodel) which is the FastAPI friend.
 After switching to the database, you can update tests based on [manual](https://fastapi.tiangolo.com/advanced/testing-database/).
 
+When you have the backend API, you need to have a way to communicate the API with your frontend team.
+I can suggest two solutions here, [Postman](https://www.postman.com/) and [Swagger](https://swagger.io/) but which one prefered by you?
+
+If you want to write this project with your partner, how did you do that?
+
 ## How to run?
 
 You can run server using `uvicorn` directly,
