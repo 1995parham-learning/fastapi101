@@ -5,7 +5,11 @@ from the database.
 
 import sqlmodel
 
+# importing domain models just for doing migration
+# because the classes should be loaded before calling
+# the migration.
 from app import config
+from app import domain as _
 
 # create sqlite database
 sqlite_url = f"sqlite:///{config.settings.database.database}"
