@@ -58,6 +58,8 @@ class Storage:
             return None
 
         self.session.delete(user)
+        self.session.commit()
+
         return user
 
     def all(self) -> list[domain.User]:
