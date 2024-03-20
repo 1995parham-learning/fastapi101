@@ -10,6 +10,10 @@ from .main import app
 
 
 class TestMain(TestCase):
+    """
+    test all the endpoints using the main application.
+    """
+
     client = TestClient(app)
 
     def test_user_create_and_delete(self):
@@ -28,7 +32,8 @@ class TestMain(TestCase):
         )
         assert response.status_code == 200
         user = response.json()
-        assert future_user.items() <= user.items()
+        for key, value in future_user.items():
+            assert user[key] == value
 
         response = self.client.get(f"/users/{user['id']}")
         assert response.status_code == 200
