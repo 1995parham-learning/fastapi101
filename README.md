@@ -99,7 +99,7 @@ uvicorn app.main:app --reload
 or you can run it using the CLI
 
 ```bash
-python main.py
+python main.py serve
 ```
 
 ## How to `curl`
