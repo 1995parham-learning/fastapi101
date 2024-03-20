@@ -1,11 +1,16 @@
 import typer
 import uvicorn
 
+from app import db
+
 app = typer.Typer()
 
 
 @app.command()
 def serve(port: int = 1378, debug: bool = False):
+    """
+    Run the uvicorn server
+    """
     print(f"FastAPI101 is coming up 0.0.0.0:{port}")
     uvicorn.run(
         "app.main:app",
@@ -18,6 +23,14 @@ def serve(port: int = 1378, debug: bool = False):
         use_colors=True,
         access_log=debug,
     )
+
+
+@app.command()
+def migrate():
+    """
+    Create database and tables
+    """
+    db.migrate()
 
 
 if __name__ == "__main__":
