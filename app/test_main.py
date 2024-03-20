@@ -2,11 +2,18 @@
 End-to-end testings for APIs.
 """
 
+import os
 from unittest import TestCase
 
 from fastapi.testclient import TestClient
 
+os.environ["fastapi101_database__database"] = ":memory:"
+os.environ["fastapi101_database__echo"] = "true"
+
+from .db import migrate
 from .main import app
+
+migrate()
 
 
 class TestMain(TestCase):

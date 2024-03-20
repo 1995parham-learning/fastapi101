@@ -50,11 +50,13 @@ class Settings(pydantic_settings.BaseSettings):
         file_secret_settings: pydantic_settings.PydanticBaseSettingsSource,
     ) -> tuple[pydantic_settings.PydanticBaseSettingsSource, ...]:
         del init_settings
-        del env_settings
         del dotenv_settings
         del file_secret_settings
 
-        return (pydantic_settings.TomlConfigSettingsSource(settings_cls),)
+        return (
+            env_settings,
+            pydantic_settings.TomlConfigSettingsSource(settings_cls),
+        )
 
 
 settings = Settings()
