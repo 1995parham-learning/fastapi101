@@ -2,18 +2,35 @@
 End-to-end testings for APIs.
 """
 
-import os
 from unittest import TestCase
 
 from fastapi.testclient import TestClient
+from sqlmodel import Session, SQLModel, StaticPool, create_engine
 
-os.environ["fastapi101_database__database"] = ":memory:"
-os.environ["fastapi101_database__echo"] = "true"
-
-from .db import migrate
+from .db import get_db
 from .main import app
 
-migrate()
+SQLALCHEMY_DATABASE_URL = "sqlite://"
+
+engine = create_engine(
+    SQLALCHEMY_DATABASE_URL,
+    connect_args={"check_same_thread": False},
+    poolclass=StaticPool,
+)
+
+
+SQLModel.metadata.create_all(engine)
+
+
+def override_get_db():
+    db = Session(autocommit=False, autoflush=False, bind=engine)
+    try:
+        yield db
+    finally:
+        db.close()
+
+
+app.dependency_overrides[get_db] = override_get_db
 
 
 class TestMain(TestCase):
