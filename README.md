@@ -13,53 +13,49 @@ during the project I will try to set up database and also commands for doing com
 
 ## Description
 
-First design the API for following operations:
+First, devise the API to accommodate the following operations:
 
 ```
 GET /students
-List the created students
+Retrieve a list of created students
 
 POST /students
-Create an student
+Create a student
 
 DELETE /students/:id
-Delete students with the given identification
+Remove a student identified by the given ID
 
 GET /students/:id
-Retrieve the student with the given identification
+Fetch the details of a student identified by the given ID
 ```
 
-Feel free to use any unique string as an identification for students. The following model
-should be your model for student, but you can use different models for your request and response.
+For student identification, any unique string can be used. The provided Student model serves as a reference,
+though alternative models can be utilized for requests and responses.
 
 ```python
-class Student:
-  # unique identification manually generated
-  id: str
-  # first name given by the user
-  first_name: str
-  # last name given by the user
-  last_name: str
-  # the date in which the creation api is called
-  registration_date: datetime.date
-  # graduation date given by user
-  graduation_date: datetime.date | None
-  # average score given by user
-  average: float
+from datetime import date
+from pydantic import BaseModel
+
+class Student(BaseModel):
+    id: str  # Unique identification manually generated
+    first_name: str  # First name provided by the user
+    last_name: str  # Last name provided by the user
+    registration_date: date  # Date of registration
+    graduation_date: date | None = None  # Graduation date (if applicable)
+    average: float  # Average score provided by the user
 ```
 
-Implement the design using [FastAPI](https://fastapi.tiangolo.com/) (make sure you are using `async` handlers),
-set up the project using [`pipenv`](https://pipenv.pypa.io/en/latest/) or [`poerty`](https://python-poetry.org/),
-and make sure you have a README for how to run the project.
+Implement the design using [FastAPI](https://fastapi.tiangolo.com/) with asynchronous handlers.
+Utilize [`pipenv`](https://pipenv.pypa.io/en/latest/) or [`poetry`](https://python-poetry.org/) for project setup,
+and ensure inclusion of a README detailing how to run the project.
 
 > [!NOTE]
-> There is no need to use database for now, and you can store data into memory.
+> Database usage is unnecessary for now; data can be stored in memory.
 
 > [!NOTE]
-> Use [`pydantic`](https://docs.pydantic.dev/latest/) for request, response and models.
-> They have very good integration with FastAPI and its friends.
+> Utilize [`pydantic`](https://docs.pydantic.dev/latest/) for requests, responses, and models due to its excellent integration with FastAPI.
 
-To understand asynchronous programming better, add sleep into your handlers as follows:
+To gain a better understanding of asynchronous programming, include sleep in handlers.
 
 ```python
 import asyncio
@@ -73,16 +69,11 @@ import time
 time.sleep(10)
 ```
 
-Call your APIs in both cases multiple times and write down the response times.
-Can you summarize what happened? And what is the difference?
+Invoke your APIs multiple times with `async` and `sync` sleep, recording response times to observe differences.
 
-Make sure your design is clean and have multiple modules (you can use current repository to have an idea about the structure).
-Use [Dependency Injection](https://fastapi.tiangolo.com/tutorial/dependencies/) to separate logic from your views.
+Ensure a clean design with separation of logic and views using [Dependency Injection](https://fastapi.tiangolo.com/tutorial/dependencies/).
 
-Write tests for your API based on the [FastAPI documentation](https://fastapi.tiangolo.com/tutorial/testing/).
-
-> [!NOTE]
-> GitHub Actions is your friend, use them to test and lint your project.
+Write tests for the API based on [FastAPI documentation](https://fastapi.tiangolo.com/tutorial/testing/), and leverage GitHub Actions for testing and linting.
 
 > [!CAUTION]
 > The `uvicorn` can have multiple workers, test and see your in-memory storage works with them or not?
