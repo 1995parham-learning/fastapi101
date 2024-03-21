@@ -23,6 +23,9 @@ SQLModel.metadata.create_all(engine)
 
 
 def override_get_db():
+    """
+    Mocks get db to provide a fake database
+    """
     db = Session(autocommit=False, autoflush=False, bind=engine)
     try:
         yield db
