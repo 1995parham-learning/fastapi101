@@ -44,14 +44,14 @@ class TestMain(TestCase):
         """
         Delete a user which doesn't exists.
         """
-        response = self.client.delete(f"/users/not-found")
+        response = self.client.delete("/users/not-found")
         assert response.status_code == 404
 
     def test_user_retrieve_not_found(self):
         """
         Retrieve a user which doesn't exists.
         """
-        response = self.client.get(f"/users/not-found")
+        response = self.client.get("/users/not-found")
         assert response.status_code == 404
 
     def test_user_create_and_delete(self):
