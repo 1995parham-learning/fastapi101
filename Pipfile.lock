@@ -625,12 +625,12 @@
         },
         "sqlmodel": {
             "hashes": [
-                "sha256:2e520efe03810ef2c268a1004cfc5ef8f8a936312232f38d6c8e62c11af2cac3",
-                "sha256:d70fdf8fe595e30a918660cf4537b9c5fc2fffdbfcba851a0135de73c3ebcbb7"
+                "sha256:6c8125d4101970d031e9aae970b20cbeaf44149989f8366d939f4ab21aab8763",
+                "sha256:95449b0b48a40a3eecf0a629fa5735b9dfc8a5574a91090d24ca17f02246ad96"
             ],
             "index": "pypi",
             "markers": "python_version >= '3.7'",
-            "version": "==0.0.18"
+            "version": "==0.0.19"
         },
         "starlette": {
             "hashes": [
