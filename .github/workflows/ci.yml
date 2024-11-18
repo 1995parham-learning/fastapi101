@@ -19,7 +19,7 @@ jobs:
       - run: pipenv run coverage xml
       - run: pipenv run mypy .
       - run: pipenv run pylint --enable-all-extensions --fail-under 5 app
-      - uses: codecov/codecov-action@v4
+      - uses: codecov/codecov-action@v5
         with:
           files: coverage.xml
           token: ${{ secrets.CODECOV_TOKEN }}
